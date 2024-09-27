@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>stopwatch</title>
+        <link rel="stylesheet" href="./challenge9.css">
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    </head>
+    <body data-aos="flip-left" data-aos-easing="ease-out-cubic" data-aos-duration="2000">
+        <h1>Stopwatch:</h1>
+        <div id="timer">
+            <span class="val" id="hr">00</span>
+            <span class="den">hr</span>
+            <span class="val" id="min">00</span>
+            <span class="den">min</span>
+            <span class="val" id="sec">00</span>
+            <span class="den">sec</span>
+        </div>
+        <div>
+            <button class="btn" onclick="strt()">Start</button>
+            <button class="btn" onclick="stop()">Stop</button>
+            <button class="btn" onclick="Reset()">Reset</button>
+        </div>
+        <script>
+            AOS.init();
+            const hrb = document.getElementById("hr");
+            const mib = document.getElementById("min");
+            const seb = document.getElementById("sec");
+            var c = 0;
+            let timer;
+            function strt()
+            {
+                timer = setInterval(start,1000);
+            }
+            function start()
+            {
+                c++;
+                if(c<10)
+                seb.textContent='0'+c%60;
+                else
+                seb.textContent=c%60;
+                if(Math.floor(c/60%60)<10)
+                mib.textContent='0'+Math.floor(c/60%60);
+                else
+                mib.textContent=Math.floor(c/60%60);
+                if(Math.floor(c/3600)<10)
+                hrb.textContent='0'+Math.floor(c/3600);
+                else
+                hrb.textContent=Math.floor(c/3600);
+            }
+            function stop()
+            {
+                clearInterval(timer);
+            }
+            function Reset()
+            {
+                seb.textContent="00"
+                mib.textContent="00"
+                hrb.textContent="00"
+                c=0;
+            }
+        </script>
+    </body>
+</html>
